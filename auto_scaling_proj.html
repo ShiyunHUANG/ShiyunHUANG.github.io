@@ -1,0 +1,684 @@
+
+<!--page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"-->
+	
+
+<!DOCTYPE html >
+    <html lang="zh-Hans">
+    <head>
+        <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+        <meta http-equiv="Cache-Control" content="no-transform" />
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+        <title>Creative Mix | Shiyun Huang </title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/lightbox.css" rel="stylesheet"> 
+        <link href="css/animate.min.css" rel="stylesheet"> 
+        <link href="css/main.css" rel="stylesheet">
+        <link href="css/responsive.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->       
+        <link rel="shortcut icon" href="images/ico/favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    </head><!--/head-->
+
+    <body>
+        <header id="header">      
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 overflow">
+                        <div class="social-icons pull-right">
+                            <ul class="nav nav-pills">
+                                <li><a href="https://github.com/ShiyunHUANG"><i
+                                    class="fa fa-github"></i></a></li>
+                                    <li><a href="https://www.facebook.com/huangshiyun44"><i
+                                        class="fa fa-facebook"></i></a></li>
+                                        <li><a
+                                            href="https://www.linkedin.com/in/shiyun-huang-688784b1"><i
+                                            class="fa fa-linkedin"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="navbar navbar-inverse" role="banner">
+                            <div class="container">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                    data-target=".navbar-collapse">
+                                    <span class="sr-only">Toggle navigation</span> <span
+                                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                                    class="icon-bar"></span>
+                                </button>
+
+                                <a class="navbar-brand" href="https://sticker.weixin.qq.com/cgi-bin/mmemoticon-bin/emoticonview?oper=single&t=shop/detail&productid=aL2PCfwK/89qO7sF6/+I+UDhfwEjhec2ZNvdnLLJRd/NUF+hHegBGIJhARfK8xYOJzol4uUemIaI45qqyK4YTDMvP7yya56hqF41IHFAt4X4=">
+                                    <h1>
+                                        <img
+                                        src="images/wechat-sticker/01.gif"
+                                        alt="logo" width="100">
+
+                                    </h1>
+
+                                </a>
+                            </div>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li><a href="http://www.shiyun.tk/shiyun/viewGallery.do">Gallery</a></li>
+                                    <li class="dropdown"><a href="#">Blogs <i
+                                        class="fa fa-angle-down"></i></a>
+                                        <ul role="menu" class="sub-menu">
+                                            <li><a href="https://shiyunhuang.github.io/blog_index_en.html">English</a></li>
+                                            <li><a href="https://shiyunhuang.github.io/blog_index_cn.html">中文</a></li>
+                                        </ul></li>
+                                        <li><a href="https://shiyunhuang.github.io/aboutme.html">About me</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    <!--/#header-->
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-1 column"></div>
+		<div class="col-md-10 column">
+<h1>Auto Scaling and Horizontal Scaling Project</h1>
+<br>
+<h4>Below is my code for auto scaling using AWS.</h4>
+			<script
+				src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+			<pre class="prettyprint">
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.profile.ProfileCredentialsProvider;
+import com.amazonaws.services.ec2.AmazonEC2;
+import com.amazonaws.services.ec2.AmazonEC2Client;
+import com.amazonaws.services.ec2.model.AuthorizeSecurityGroupIngressRequest;
+import com.amazonaws.services.ec2.model.CreateSecurityGroupRequest;
+import com.amazonaws.services.ec2.model.CreateSecurityGroupResult;
+import com.amazonaws.services.ec2.model.IpPermission;
+
+import com.amazonaws.auth.AWSCredentialsProvider;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.client.builder.AwsClientBuilder;
+import com.amazonaws.services.cloudwatch.AmazonCloudWatchClient;
+import com.amazonaws.services.autoscaling.AmazonAutoScaling;
+import com.amazonaws.services.autoscaling.AmazonAutoScalingClient;
+import com.amazonaws.services.autoscaling.model.CreateAutoScalingGroupRequest;
+import com.amazonaws.services.autoscaling.model.CreateLaunchConfigurationRequest;
+import com.amazonaws.services.autoscaling.model.DeleteAutoScalingGroupRequest;
+import com.amazonaws.services.autoscaling.model.DeleteLaunchConfigurationRequest;
+import com.amazonaws.services.autoscaling.model.InstanceMonitoring;
+import com.amazonaws.services.cloudwatch.model.ComparisonOperator;
+import com.amazonaws.services.cloudwatch.model.Dimension;
+import com.amazonaws.services.cloudwatch.model.PutMetricAlarmRequest;
+import com.amazonaws.services.cloudwatch.model.StandardUnit;
+import com.amazonaws.services.cloudwatch.model.Statistic;
+import com.amazonaws.services.ec2.AmazonEC2Client;
+import com.amazonaws.services.ec2.model.AuthorizeSecurityGroupIngressRequest;
+import com.amazonaws.services.ec2.model.CreateSecurityGroupRequest;
+import com.amazonaws.services.ec2.model.CreateTagsRequest;
+import com.amazonaws.services.ec2.model.DeleteSecurityGroupRequest;
+import com.amazonaws.services.ec2.model.DescribeInstancesResult;
+import com.amazonaws.services.ec2.model.DescribeSecurityGroupsRequest;
+import com.amazonaws.services.ec2.model.DescribeSecurityGroupsResult;
+import com.amazonaws.services.ec2.model.Instance;
+import com.amazonaws.services.ec2.model.IpPermission;
+import com.amazonaws.services.ec2.model.Monitoring;
+import com.amazonaws.services.ec2.model.Reservation;
+import com.amazonaws.services.ec2.model.RunInstancesRequest;
+import com.amazonaws.services.ec2.model.RunInstancesResult;
+import com.amazonaws.services.ec2.model.SecurityGroup;
+import com.amazonaws.services.ec2.model.Tag;
+import com.amazonaws.services.elasticloadbalancing.AmazonElasticLoadBalancingClient;
+import com.amazonaws.services.elasticloadbalancing.AmazonElasticLoadBalancingClientBuilder;
+import com.amazonaws.services.elasticloadbalancing.model.ConfigureHealthCheckRequest;
+import com.amazonaws.services.elasticloadbalancing.model.ConfigureHealthCheckResult;
+import com.amazonaws.services.elasticloadbalancing.model.CreateLoadBalancerRequest;
+import com.amazonaws.services.elasticloadbalancing.model.CreateLoadBalancerResult;
+import com.amazonaws.services.elasticloadbalancing.model.DeleteLoadBalancerRequest;
+import com.amazonaws.services.elasticloadbalancing.model.HealthCheck;
+import com.amazonaws.services.elasticloadbalancing.model.Listener;
+import com.amazonaws.services.elasticloadbalancing.model.RegisterInstancesWithLoadBalancerRequest;
+import com.amazonaws.services.elasticloadbalancing.model.RegisterInstancesWithLoadBalancerResult;
+import com.amazonaws.services.autoscaling.model.PutScalingPolicyRequest;
+import com.amazonaws.services.autoscaling.model.PutScalingPolicyResult;
+import com.amazonaws.services.autoscaling.model.UpdateAutoScalingGroupRequest;
+
+public class AWSAutoScale {
+    private static final String secGroupLG = "cc15619lgSecGroup";
+    private static final String secGroupELB_ASG = "cc15619elbSecGroup";
+    //    private static final String secGroupIDELB_ASG = "cc15619elbSecGroup";
+    private static final String launchConfigName = "cc15619LaunchConfig";
+    private static final String autoScalingGroupName = "cc15619AutoScalingGroup";
+    private static final String availableZone = "us-east-1a";
+    private static final String elbName = "ccLoadBalancer";
+    private static String dnsELB;
+    private static void createSecGroup(String secGroupName, AmazonEC2Client ec2) {
+        //get all sec groups
+        DescribeSecurityGroupsRequest secGroupRequest = new DescribeSecurityGroupsRequest();
+        DescribeSecurityGroupsResult secGroupResponse = ec2.describeSecurityGroups(secGroupRequest);
+        List<SecurityGroup> secGroups = secGroupResponse.getSecurityGroups();
+        //check if this secGroup exsit
+        for(SecurityGroup sg : secGroups) {
+            if(sg.getGroupName().equals(secGroupName)) {
+                System.out.println("Security group " + secGroupName + "already exsit.");
+                return;
+            }
+        }
+        //create a secGroup
+        CreateSecurityGroupRequest createSecurityGroupRequest = 
+                new CreateSecurityGroupRequest();
+        createSecurityGroupRequest.withGroupName(secGroupName);
+        ec2.createSecurityGroup(createSecurityGroupRequest);
+        // config rules
+        IpPermission ipPermission = new IpPermission();
+        ipPermission.withIpRanges("0.0.0.0/0")
+        .withIpProtocol("tcp")
+        .withFromPort(80)
+        .withToPort(80);
+        System.out.println("Security group " + secGroupName + " created.");
+        AuthorizeSecurityGroupIngressRequest authorizeSecurityGroupIngressRequest =
+                new AuthorizeSecurityGroupIngressRequest();
+        authorizeSecurityGroupIngressRequest.withGroupName(secGroupName).withIpPermissions(ipPermission);
+        ec2.authorizeSecurityGroupIngress(authorizeSecurityGroupIngressRequest);   
+        
+    }
+
+    /**
+     * @param ec2
+     * @param imageId: 
+     * @param instanceType: m3.medium
+     * @return
+     */
+    private static Instance createVM
+    (AmazonEC2Client ec2, String image, String vmSize, String secGroupName, boolean isDetailMonitor) {
+        //1. set vm param
+        RunInstancesRequest runInstancesRequest = new RunInstancesRequest();
+        runInstancesRequest.withImageId(image)
+        .withInstanceType(vmSize)
+        .withMinCount(1) //min
+        .withMaxCount(1) //max
+        .withSecurityGroups(secGroupName);
+        // 2. launch Instance
+        RunInstancesResult runInstancesResult = ec2.runInstances(runInstancesRequest);  
+        Instance instance = runInstancesResult.getReservation().getInstances().get(0);
+        if(isDetailMonitor) {
+            Monitoring m = new Monitoring();
+            m.setState("true");
+            instance.setMonitoring(m);
+        }
+        // 3. tag instances
+        tagInstance(instance, ec2);
+        System.out.println("=========Launched " + instance.getInstanceId() + "========");
+        return instance;
+    }
+    private static AmazonAutoScaling createAutoScalingClientwithCredentials(String accessKey, String secretKey) {
+        BasicAWSCredentials bawsc = new BasicAWSCredentials(accessKey, secretKey);
+        //Create an Amazon EC2 Client
+        AmazonAutoScaling client = new AmazonAutoScalingClient(bawsc);
+        System.out.println("ASClient created.");
+        return client;
+    }
+    private static AmazonEC2Client createEC2withCredentials(String accessKey, String secretKey) {
+        BasicAWSCredentials bawsc = new BasicAWSCredentials(accessKey, secretKey);
+        //Create an Amazon EC2 Client
+        AmazonEC2Client ec2 = new AmazonEC2Client(bawsc);
+        System.out.println("EC2Client created with service name: " + ec2.getServiceName());
+        return ec2;
+    }
+    /*
+     * https://github.com/swaprp15/AWS_ELB/blob/master/src/LoadBalancer.java
+     * Create Load Balancer with given properties
+     * Redirects HTTP:80 requests from the load balancer to HTTP:80 on the instance. 
+     */
+    private static CreateLoadBalancerRequest createELBRequest(int instancePort, String instanceProtocol, int loadBalancerPort, String protocol,
+            String availabilityZone) {
+        //listeners
+        List<Listener> listeners = setUpListenersForELB 
+                (instancePort, instanceProtocol, loadBalancerPort, protocol);
+        //zones
+        Set<String> availabilityZones = new HashSet<>();
+        availabilityZones.add(availabilityZone);
+        //tag
+        com.amazonaws.services.elasticloadbalancing.model.Tag tag = 
+                new com.amazonaws.services.elasticloadbalancing.model.Tag();
+        tag.withKey("Project").withValue("2.1");
+
+        //add to request
+        CreateLoadBalancerRequest lbRequest = new CreateLoadBalancerRequest(elbName);
+        lbRequest.setListeners(listeners);
+        lbRequest.setAvailabilityZones(availabilityZones);
+        lbRequest.withSecurityGroups(secGroupELB_ASG);//?
+        lbRequest.withTags(tag);
+        //lbRequest.withSubnets("");//????
+        return lbRequest;
+    }
+    private static AmazonElasticLoadBalancingClient createELBClinetwithCredentials
+    (int instancePort, String instanceProtocol, int loadBalancerPort, String protocol,
+            String availabilityZone, String accessKey, String secretKey, String dnsLG) { 
+        BasicAWSCredentials bawsc = new BasicAWSCredentials (accessKey, secretKey);
+        AmazonElasticLoadBalancingClient elbClient = 
+                new AmazonElasticLoadBalancingClient(bawsc);
+        try {
+            CreateLoadBalancerRequest lbRequest = 
+                    createELBRequest(instancePort, instanceProtocol, loadBalancerPort, protocol, availabilityZone);
+
+            //healthcheck
+            HealthCheck healthCheck = new HealthCheck()
+                    .withHealthyThreshold(3)
+                    .withInterval(20)
+                    .withTarget("HTTP:80/heartbeat?lg=" + dnsLG)
+                    .withTimeout(5)
+                    .withUnhealthyThreshold(5);
+
+            ConfigureHealthCheckRequest healthCheckRequest = new ConfigureHealthCheckRequest()
+                    .withHealthCheck(healthCheck)
+                    .withLoadBalancerName(elbName);
+            elbClient.configureHealthCheck(healthCheckRequest).withHealthCheck(healthCheck);
+            dnsELB = elbClient.createLoadBalancer(lbRequest).getDNSName();
+            CreateLoadBalancerResult clbResult = elbClient.createLoadBalancer(lbRequest);
+            System.out.println("Created Load Balancer! DSN Name : " + clbResult.getDNSName());
+        }
+        catch(Exception e) {
+            System.out.println("Exception in creating ELB at " + e.getMessage());
+        }
+        return elbClient;
+    }
+    private static List<Listener> setUpListenersForELB
+    (int instancePort, String instanceProtocol, int loadBalancerPort, String protocol) {
+        Listener listener = new Listener();
+        listener.setInstancePort(instancePort);
+        listener.setInstanceProtocol(instanceProtocol);
+        listener.setLoadBalancerPort(loadBalancerPort);
+        listener.setProtocol(protocol);
+        List<Listener> listeners = new ArrayList<>();
+        listeners.add(listener);
+        return listeners;
+    }
+    private static AmazonCloudWatchClient createCloudWatchClientWithCredentials
+    (String accessKey, String secretKey) {
+        BasicAWSCredentials bawsc = new BasicAWSCredentials(accessKey, secretKey);
+        //Create an Amazon EC2 Client
+        AmazonCloudWatchClient cloudWatchClient  = new AmazonCloudWatchClient(bawsc);
+        return cloudWatchClient;
+    }
+    //http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/autoscaling/AmazonAutoScaling.html#createLaunchConfiguration-com.amazonaws.services.autoscaling.model.CreateLaunchConfigurationRequest-
+    private static void createLaunchConfiguration
+    (AmazonAutoScaling client, String imageID, String vmSize, String secGroup) {
+        CreateLaunchConfigurationRequest request = new CreateLaunchConfigurationRequest()
+                .withImageId(imageID).withInstanceType(vmSize)
+                .withLaunchConfigurationName(launchConfigName)
+                .withSecurityGroups(secGroup);
+        InstanceMonitoring monitoring = new InstanceMonitoring();
+        monitoring.setEnabled(Boolean.TRUE);
+        request.setInstanceMonitoring(monitoring);
+        client.createLaunchConfiguration(request);
+    }
+
+    //https://marksdevserver.com/2013/03/11/setting-autoscaling-java/
+    //http://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/autoscaling/AmazonAutoScaling.html#createAutoScalingGroup-com.amazonaws.services.autoscaling.model.CreateAutoScalingGroupRequest-
+    private static void createAutoScalingGroup(AmazonAutoScaling asClient) {
+        CreateAutoScalingGroupRequest asgRequest = new CreateAutoScalingGroupRequest();
+        //        asgRequest.setAutoScalingGroupName("GroupName");
+        asgRequest.setLaunchConfigurationName(launchConfigName);
+
+        List<String> avZones = new ArrayList<>();
+        avZones.add(availableZone);
+        asgRequest.setAvailabilityZones(avZones);
+
+        asgRequest.setMinSize(1);  // disabling it for the moment
+        asgRequest.setMaxSize(5);
+
+        List<String> elbs = new ArrayList<>();
+        elbs.add(elbName);
+        asgRequest.setLoadBalancerNames(elbs);
+
+        asgRequest.setHealthCheckType("ELB");
+        asgRequest.setHealthCheckGracePeriod(300);//??
+        asgRequest.setDefaultCooldown(60);//??
+
+        //add tags
+        com.amazonaws.services.autoscaling.model.Tag tag = 
+                new com.amazonaws.services.autoscaling.model.Tag()
+                .withKey("Project").withValue("2.1");
+        asgRequest.withTags(tag);
+        asClient.createAutoScalingGroup(asgRequest);
+        System.out.println("Created Auto Scaling Group.");
+    }
+    private static String createAutoScalePolicyReturnARN
+    (int scaleAdjust, int coolDown, String scaleGroupName, String policyName) {
+        AmazonAutoScaling client = new AmazonAutoScalingClient();
+        PutScalingPolicyRequest request = new PutScalingPolicyRequest()
+                .withScalingAdjustment(scaleAdjust)
+                .withAdjustmentType("ChangeInCapacity")
+                .withCooldown(coolDown)
+                .withAutoScalingGroupName(scaleGroupName)
+                .withPolicyName(policyName);
+        PutScalingPolicyResult response = client.putScalingPolicy(request);
+        return response.getPolicyARN();//You need the policy ARN in the next step so make a note of it.
+    }
+    //https://marksdevserver.com/2013/03/11/setting-autoscaling-java/
+    public static void addAutoScalePolicy
+    (String policyARN, String scaleGroupName, AmazonCloudWatchClient cloudWatchClient, boolean isScaleIn) {
+        PutMetricAlarmRequest alarmRequest;
+        if(isScaleIn) {
+            alarmRequest = setScaleInPutMetricAlarmRequest(); 
+        } else  {
+            alarmRequest = setScaleOutPutMetricAlarmRequest();
+        }
+
+        List<Dimension> dimensions = new ArrayList<>();
+        Dimension dimension = new Dimension();
+        dimension.withName("AutoScalingGroupName")
+        .withValue(scaleGroupName);
+        dimensions.add(dimension);
+        alarmRequest.withDimensions(dimensions);
+
+        List<String> actions = new ArrayList<>();
+        actions.add(policyARN); // This is the value returned by the ScalingPolicy request
+        alarmRequest.setAlarmActions(actions);
+        cloudWatchClient.putMetricAlarm(alarmRequest);
+    }
+    private static PutMetricAlarmRequest setScaleOutPutMetricAlarmRequest() {
+        PutMetricAlarmRequest alarmRequest = new PutMetricAlarmRequest();
+        alarmRequest.withAlarmName("AlarmName-up")
+        .withMetricName("CPUUtilization");
+        alarmRequest.setNamespace("AWS/EC2");
+        //Scale the number of instance up when the CPU metric greater than threshould
+        alarmRequest.setComparisonOperator(ComparisonOperator.GreaterThanOrEqualToThreshold);
+        alarmRequest.setStatistic(Statistic.Average);
+        alarmRequest.setUnit(StandardUnit.Percent);
+        alarmRequest.setThreshold(80d);// CPU metric goes above 60% for 5 minutes
+        alarmRequest.setPeriod(360);//6min
+        alarmRequest.setEvaluationPeriods(1);
+        return alarmRequest;
+    }
+    private static PutMetricAlarmRequest setScaleInPutMetricAlarmRequest() {
+        PutMetricAlarmRequest alarmRequest = new PutMetricAlarmRequest();
+        alarmRequest.withAlarmName("AlarmName-down")
+        .withMetricName("CPUUtilization");
+        alarmRequest.setNamespace("AWS/EC2");
+        //Scale the number of instance down when the CPU metric less than threshould
+        alarmRequest.setComparisonOperator(ComparisonOperator.LessThanOrEqualToThreshold);
+        alarmRequest.setStatistic(Statistic.Average);
+        alarmRequest.setUnit(StandardUnit.Percent);
+        alarmRequest.setThreshold(40d);// CPU metric goes above 40% for 1 minutes
+        alarmRequest.setPeriod(60);//1min
+        alarmRequest.setEvaluationPeriods(1);
+        return alarmRequest;
+    }
+    /**
+     * @param instance
+     * @param ec2
+     */
+    
+    private static void tagInstance(Instance instance, AmazonEC2Client ec2) {
+        List<Tag> tags = new ArrayList<Tag>();
+        tags.add(new Tag("Project","2.1"));
+        CreateTagsRequest createTagsRequests = new CreateTagsRequest();
+        createTagsRequests.withResources(instance.getInstanceId());
+        createTagsRequests.setTags(tags);
+        ec2.createTags(createTagsRequests);
+    }
+    public static void main(String[] args) {
+        String submissionPwd = args[0].trim();
+        String andrewID = args[1].trim();
+        String accessKey = args[2].trim();
+        String secretKey = args[3].trim();
+        AmazonEC2Client ec2Client = createEC2withCredentials(accessKey, secretKey);
+        AmazonAutoScaling asClient = createAutoScalingClientwithCredentials(accessKey, secretKey);
+        /*6. Create cloud watch alarm*/
+        AmazonCloudWatchClient cloudWatchClient = createCloudWatchClientWithCredentials(accessKey, secretKey);
+        /*1.  Create two security groups to allow incoming traffic on port 80
+        and all outgoing traffic on all ports. One of them should be associated
+        with the Load Generator and one with your Elastic Load Balancer and Auto
+        Scaling Group. (You will have to delete the latter security group with code).*/
+        createSecGroup(secGroupLG, ec2Client);
+        createSecGroup(secGroupELB_ASG, ec2Client);
+        /*2. launch one Load Generator instance with the correct AMIs and types
+        size m3.medium using ami-dfc835c9 with one of the security groups you created in step 1.*/
+        Instance lgIns = createVM(ec2Client, "ami-dfc835c9", "m3.medium", secGroupLG, false);
+        /*3. Create an ELB that: 
+        Redirects HTTP:80 requests from the load balancer to HTTP:80 on the instance. 
+        Set up the page /heartbeat?lg=[load-generator-dns] as the health check page.*/
+        String dnsLG = getInstancePublicDnsName(lgIns.getInstanceId(), ec2Client);
+        AmazonElasticLoadBalancingClient elbClient = createELBClinetwithCredentials 
+                (80, "HTTP", 80, "HTTP", availableZone, accessKey, secretKey, dnsLG);
+        /* 4. Create a Launch Configuration for the instances that will become part of 
+         * the Auto Scaling Group, with the following parameters: 
+         * AMI ID: ami-2fca3739 
+         * Instance Type: m3.medium or m3.large 
+         * Detailed Monitoring: enabled*/
+        createLaunchConfiguration (asClient, "ami-2fca3739", "m3.medium", secGroupELB_ASG);
+
+        /* 5.1 Create Auto Scaling Group with the following parameters. 
+         * Health Check Type: ELB 
+         * Detailed Monitoring: enabled */
+        createAutoScalingGroup(asClient);
+        /* 5.2 Create and add ASpolicy*/
+        String scaleInPolicyARN = createAutoScalePolicyReturnARN(-1, 60, autoScalingGroupName, "scaleIn");
+        String scaleOutPolicyARN = createAutoScalePolicyReturnARN(1, 60, autoScalingGroupName, "scaleOut");
+        //addAutoScalePolicy(String policyARN, String scaleGroupName, AmazonCloudWatchClient cloudWatchClient, boolean isScaleIn)
+        addAutoScalePolicy (scaleInPolicyARN, autoScalingGroupName, cloudWatchClient, true);
+        addAutoScalePolicy (scaleOutPolicyARN, autoScalingGroupName, cloudWatchClient, false);
+        waitForInputSeconds(100);
+
+        /* Before launch test*/
+        getHTML("http://" + dnsLG + "/password?passwd=" + submissionPwd +
+                "&andrewid=" + andrewID);
+
+
+        /*warm up: http://[load-generator-dns]/warmup?dns=[elb-dns]*/
+        for(int i = 1; i <= 3; i++) {
+            System.out.println("Start warm up No." + i);
+            getHTML("http://" + dnsLG + "/warmup?dns=" + dnsELB);
+            System.out.println("Finish warm up No." + i);
+            waitForInputSeconds(300);//15min?
+        }
+        /*start test: http://[load-generator-dns]/autoscaling?dns=[elb-dns]*/
+        System.out.println("Test start.");
+        String log = getHTML("http://" + dnsLG + "/autoscaling?dns=" + dnsELB);
+        int idx = log.indexOf("test");
+        String testID = log.substring(idx + 5, idx + 18);
+        System.out.println("testID " + testID);
+        /*view progress: http://[load-generator-dns]/log?name=test.[testId].log*/
+        getHTML("http://" + dnsLG + "/log?name=test." + testID +".log");
+        waitForInputSeconds(48 * 60);
+        System.out.println("Test end.");
+        getHTML("http://" + dnsLG + "/log?name=test." + testID +".log");
+        /*delete resource*/
+        deleteASGRelatedResource(asClient);
+        deleteELBRelatedResource(elbClient);
+        deleteSecGroup(secGroupELB_ASG, ec2Client);
+        System.out.println("Delete finish!");
+    }
+    private static void deleteSecGroup(String secGroupName, AmazonEC2Client ec2) {
+        //get all sec groups
+        DescribeSecurityGroupsRequest secGroupRequest = new DescribeSecurityGroupsRequest();
+        DescribeSecurityGroupsResult secGroupResponse = ec2.describeSecurityGroups(secGroupRequest);
+        List<SecurityGroup> secGroups = secGroupResponse.getSecurityGroups();
+        //check if this secGroup exsit
+        for(SecurityGroup sg : secGroups) {
+            if(sg.getGroupName().equals(secGroupName)) {
+                secGroups.remove(sg);
+                System.out.println("Deleted security group " + secGroupName);
+                return;
+            }
+        }
+    }
+    private static void deleteASGRelatedResource(AmazonAutoScaling asClient) {
+        //Launch Configuration
+        System.out.println("Start deleting launch configuration.");
+        DeleteLaunchConfigurationRequest deleteLaunchConfigurationRequest = new DeleteLaunchConfigurationRequest();
+        deleteLaunchConfigurationRequest.withLaunchConfigurationName(launchConfigName);
+        asClient.deleteLaunchConfiguration(deleteLaunchConfigurationRequest);
+        waitForInputSeconds(60);
+        //ASG
+        System.out.println("Start deleting ASG.");
+        UpdateAutoScalingGroupRequest updateAutoScalingGroupRequest = new UpdateAutoScalingGroupRequest();
+        updateAutoScalingGroupRequest.withAutoScalingGroupName(autoScalingGroupName) // as above          
+        .withMinSize(0)
+        .withMaxSize(0);    
+        asClient.updateAutoScalingGroup(updateAutoScalingGroupRequest);
+
+        waitForInputSeconds(60);
+
+        DeleteAutoScalingGroupRequest deleteAutoScalingGroupRequest = new DeleteAutoScalingGroupRequest();
+        deleteAutoScalingGroupRequest.withAutoScalingGroupName(autoScalingGroupName);
+        asClient.deleteAutoScalingGroup(deleteAutoScalingGroupRequest);
+
+    }
+    private static void deleteELBRelatedResource(AmazonElasticLoadBalancingClient elbClient) {
+        System.out.println("Start deleting elb.");
+        DeleteLoadBalancerRequest deleteLoadBalancerRequest = new DeleteLoadBalancerRequest();
+        deleteLoadBalancerRequest.withLoadBalancerName(elbName);        
+        elbClient.deleteLoadBalancer(deleteLoadBalancerRequest);
+    }
+    /**
+     * Send GET request in java, stream any webpage
+     * reference: http://stackoverflow.com/questions/1485708/how-do-i-do-a-http-get-in-java
+     * @param urlToRead
+     * @return Msg on the website
+     * @throws IOException 
+     */
+    public static String getHTML(String urlToRead)  {
+        StringBuilder result = new StringBuilder();
+        while(true) {
+            try {
+                URL url = new URL(urlToRead);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                System.out.println("Sending GET request...");
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    result.append(line);
+                }
+                br.close();
+                System.out.println("Sent! HTML reads: " + result);
+                break;
+                //            br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            } catch (ConnectException e) {
+                System.out.println("Time out while sending GET request, wait for 15s and retry");
+                waitForInputSeconds(15);
+                continue;
+            } catch (IOException e) {
+                System.out.println("IOException, wait for 15s and retry");
+                waitForInputSeconds(15);
+                continue;
+            }
+        }
+        return result.toString();
+    }
+    //reference: http://stackoverflow.com/questions/2702980/java-loop-every-minute
+    private static void waitForInputSeconds(int waitSeconds) {
+        System.out.println("\n"+ "Start waiting for " + waitSeconds + "s");
+        for(int i = 0; i < waitSeconds; i++) {
+            System.out.print(i + " ");
+            try {
+                Thread.sleep(1000);//1000 millis == 1 second
+            } catch (InterruptedException e) {
+                System.out.println("InterruptedException in wait1min(). Exit Waiting.");
+                e.printStackTrace();
+                System.exit(0);
+
+            }   
+        }
+        System.out.println("End waiting.");
+    }
+    //http://stackoverflow.com/questions/9241584/get-public-dns-of-amazon-ec2-instance-from-java-api
+    private static String getInstancePublicDnsName(String instanceId, AmazonEC2Client ec2) {
+        DescribeInstancesResult describeInstancesRequest = ec2.describeInstances();
+        List<Reservation> reservations = describeInstancesRequest.getReservations();
+        for (Reservation reservation : reservations) {
+            for (Instance instance : reservation.getInstances()) {
+                if (instance.getInstanceId().equals(instanceId))
+                    return instance.getPublicDnsName();
+            }
+        }
+        return null;
+    }
+}
+			
+			
+			</pre>
+
+		</div>
+		<div class="col-md-1 column"></div>
+	</div>
+</div>
+
+<!--footer-->
+                                    <div class="container">
+                                        <img src="images/footer.png" class="img-responsive center-block">
+
+                                    </div>
+
+                                    <div class="col-sm-12 text-center">
+                                        <p>
+                                            Email: <a href="mailto:huangshiyun44@hotmail.com">huangshiyun44@hotmail.com</a>
+                                            <br>
+                                            LinkedIn&nbsp;<a
+                                            href="https://www.linkedin.com/in/
+                                            shiyun-huang-688784b1?trk=nav_responsive_tab_profile">
+                                            Profile</a>
+                                            <br>
+                                            GitHub&nbsp;<a href="https://github.com/ShiyunHUANG">
+                                            Page</a>
+                                        </p>
+                                        <br>
+                                        <p>&copy; Shiyun Huang 2017. All Rights Reserved.</p>
+                                        <div class="copyright-text text-center">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                            <script type="text/javascript" src="js/jquery.js"></script>
+                            <script type="text/javascript" src="js/bootstrap.min.js"></script>
+                            <script type="text/javascript" src="js/lightbox.min.js"></script>
+                            <script type="text/javascript" src="js/wow.min.js"></script>
+                            <script type="text/javascript" src="js/audio.min.js"></script>
+                            <script>
+                                audiojs.events.ready(function() {
+                                    var as = audiojs.createAll();
+                                });
+                            </script>
+                            <script type="text/javascript" src="js/masonry.min.js"></script>
+                            <script type="text/javascript" src="js/main.js"></script>    
+                        </body>
+                        </html>
