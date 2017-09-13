@@ -7,14 +7,224 @@
 
 </head>
 <body>
-	<div id="head"></div><br />
-	<div id="content">
-		Main Content
-	</div><br />
-	<div id="foot"></div>
+	<header id="header"></header>
+	<!-- start of content -->
+
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-1 column"></div>
+		<div class="col-md-10 column">
+			<h3>Big Data Analysis based on Amazon AWS using MapReduce</h3>
+			<br>
+			<h4>Below is the mapper class.</h4>
+			<script
+				src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+			<pre class="prettyprint">
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.ZipException;
+
+/**
+ * @author Shiyun Huang
+ */
+public class Mapper {
+    //index 1 is pagetitle, 2 is pagecount
+    public static void main(String[] args) {
+        try {
+            init();
+            mapper();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /*mapper method, print results that satisfy conditions*/
+    private static void mapper() throws IOException {
+        BufferedReader br1 = new BufferedReader(new InputStreamReader(System.in));
+        //        String inputFileName;
+        String line = null;
+//      String inputFileName = "pageviews-20161110-230000";
+        String inputFileName = System.getenv("mapreduce_map_input_file");//pageviews-yyyyddmm-hh0000
+        inputFileName = cleanFileName(inputFileName);
+        String[] splitName = inputFileName.split("-");
+        String date = splitName[1];
+        while((line = br1.readLine()) != null) {
+                    filterOutOrPrint(line, date);
+        }
+    }
+    //process file name
+    private static String cleanFileName(String name) {
+        if(name.contains("/")) {
+            name = name.substring(name.lastIndexOf("/") + 1);
+        }
+        return name;
+    }
+    //From Project 1_1
+    private static String[] namespaces = {"media:", "special:", "talk:", "user:", "user_talk:", "wikipedia:",
+            "wikipedia_talk:", "file:", "file_talk:", "mediawiki:", "mediawiki_talk:",
+            "template:", "template_talk:", "help:", "help_talk:", "category:",
+            "category_talk:", "portal:", "portal_talk:", "book:", "book_talk:",
+            "draft:", "draft_talk:", "education_program:", "education_program_talk:",
+            "timedtext:", "timedtext_talk:", "module:", "module_talk:", "gadget:",
+            "gadget_talk:", "gadget_definition:", "gadget_definition_talk:", }; 
+    private static String[] suffix = {".png", ".gif", ".jpg", ".jpeg", ".tiff", ".tif",
+            ".xcf", ".mid", ".ogg", ".ogv", ".svg", ".djvu", ".oga",
+            ".flac", ".opus", ".wav", ".webm", ".ico", ".txt", "_(disambiguation)"};
+    private static String[] exactMatchArr = {"404.php", "Main_Page", "-"};
+    private static Set<Character> lowercases = new HashSet<Character>();
+    private static Set<String> exactMatch = new HashSet<String>(Arrays.asList(exactMatchArr));
+    /*Initialize static fields*/
+    private static void init() throws IOException {
+        for(char ch = 'a'; ch <= 'z'; ch++) {
+            lowercases.add(ch);
+        }
+    }
+    /*Apply rules for filtering after init()*/
+    private static void filterOutOrPrint(String line, String date) throws IOException {
+        /*Filter out empty lines*/
+        if(line == null || line.isEmpty()) return;
+        /*Split input String by any number of consecutive spaces*/
+        String[] split = line.split("\\s+");
+        /*1. Filter out line with less than 4 columns*/
+        if(split.length != 4) return;
+        /*3. Check the first column*/
+        if(!split[0].equals("en") && !split[0].equals("en.m")) return;
+        /*2 URL normalization and percent-encoding*/
+        String decodedTitle = PercentDecoder.decode(split[1]);
+        String strLower = decodedTitle.toLowerCase();
+        /*4. Filter out Wikipedia namespaces*/
+        for(String ns : namespaces) {
+            if(strLower.startsWith(ns)) return;
+        }
+        /*5. Filter out pages titles start with lower English letters*/
+        if(lowercases.contains(decodedTitle.charAt(0))) return;
+        /*6. Filter out certain suffix (case insensitive), miscellaneous filename extensions*/
+        /*7. Filter all pages with suffix _(disambiguation)(case insensitive)*/
+        for(String sf : suffix) {
+            if(strLower.endsWith(sf)) return;
+        }
+        /*8. Filter page titles that are exactly (case sensitive) in the array*/
+        if(exactMatch.contains(decodedTitle)) return;
+        /*Pass all rules, print*/
+        try {
+            PrintWriter out = new PrintWriter(
+                    new OutputStreamWriter(System.out, "UTF-8"), true);
+            out.println(decodedTitle + "\t" + date + "\t" + Integer.parseInt(split[2]));
+            //title-date-pageview
+        } catch (NumberFormatException e) {
+            return;
+        }
+    }
+}
+
+			
+			
+			
+			</pre>
+
+			<h4>Below is the reducer class.</h4>
+
+			<pre class="prettyprint">
+			import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Reducer {
+    private static String[] generateNov() {
+        String[] res = new String[30];
+        for(int i = 1; i <= 9; i++) {
+            res[i - 1] = "2016110" + i;
+        }
+        for(int i = 10; i <= 30; i++) {
+            res[i - 1] = "201611" + i;
+        }
+        return res;
+    }
+    private static void reducer() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String input, prevTitle = null, title, date = null;
+        int pageView = 0, totalPageView = 0;
+        Map<String , Integer> map = new HashMap<String
+					, Integer>(); //date-pageView
+        while ((input = br.readLine()) != null) {
+            try {
+                String[] split = input.split("\\s+"); //title-date-pageView
+                title = split[0];
+                date = split[1];
+                pageView = Integer.parseInt(split[2]);
+                if (title != null && title.equals(prevTitle)){ //same title
+                    totalPageView += pageView;
+                    if(map.containsKey(date)) map.put(date, map.get(date) + pageView);
+                    else map.put(date, pageView);
+                } else { //different title
+                    if (prevTitle != null && totalPageView > 100000) {
+                        StringBuilder sb = new StringBuilder (totalPageView + "\t" + prevTitle);
+//                        System.out.println(totalPageView + "\t" + prevTitle);
+                        for(String nov : generateNov()) {
+                            sb.append("\t" + nov + ":");
+                            if(map.containsKey(nov)) sb.append(map.get(nov));
+                            else sb.append(0);
+                        }
+                        System.out.println(sb);
+                    }
+                    map.clear();
+                    map.put(date, pageView);
+                    totalPageView = pageView;
+                    prevTitle = title;
+                }
+            } catch (NumberFormatException e) {
+                continue;
+            }
+        }
+        if(map.size() != 0 && totalPageView > 100000) { //the final one
+            StringBuilder sb = new StringBuilder (totalPageView + "\t" + prevTitle);
+            for(Map.Entry<String , Integer> entry : map.entrySet()) {
+                sb.append("\t"+ entry.getKey() + ":" + entry.getValue());
+            }
+            PrintWriter out = new PrintWriter(
+                    new OutputStreamWriter(System.out, "UTF-8"), true);
+            out.println(sb);
+        }
+    }
+    public static void main(String[] args) {
+        try {
+            reducer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+			
+			
+			</pre>
+
+		</div>
+		<div class="col-md-1 column"></div>
+	</div>
+</div>
+
+	
+	<!-- end of content -->
 	<script>
-		$("#head").load("header.html");
-		$("#foot").load("footer.html");
+		$("#header").load("header.html");
+		$("#myFooter").load("footer.html");
 	</script>
 
 </body>
