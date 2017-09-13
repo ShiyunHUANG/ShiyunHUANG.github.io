@@ -1,0 +1,352 @@
+@CHARSET "ISO-8859-1";
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+  width: 70%;
+  margin: auto;
+}
+
+body {
+  margin: 25px;
+}
+
+div.polaroid {
+  width: 95%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+    rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+}
+
+div.caption {
+  text-align: center;
+  padding: 10px 20px;
+}
+
+
+.stiker {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 229px;
+  height: 208px;
+  content: "";
+  padding: 60px 0 0;
+  border-top: 0 solid;
+  border-right: 0 solid;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  border-left: 1px solid rgba(0,0,0,0.2);
+  -webkit-border-radius: 0 10px 200px / 0 200px 14px 250px;
+  border-radius: 0 10px 200px / 0 200px 14px 250px;
+  font: normal 34px/1.3 "Gochi Hand", Helvetica, sans-serif;
+  color: rgba(255,0,106,0.58);
+  text-align: center;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  white-space: pre;
+  background: -webkit-repeating-linear-gradient(-90deg, rgba(129,203,188,0.5) 0, rgba(129,203,188,0.5) 0.44%, rgba(0,0,0,0) 0.44%, rgba(0,0,0,0) 22%), #fcf59b;
+  background: -moz-repeating-linear-gradient(180deg, rgba(129,203,188,0.5) 0, rgba(129,203,188,0.5) 0.44%, rgba(0,0,0,0) 0.44%, rgba(0,0,0,0) 22%), #fcf59b;
+  background: repeating-linear-gradient(180deg, rgba(129,203,188,0.5) 0, rgba(129,203,188,0.5) 0.44%, rgba(0,0,0,0) 0.44%, rgba(0,0,0,0) 22%), #fcf59b;
+  background-position: 50% 50%;
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: auto auto;
+  background-size: auto auto;
+  -webkit-box-shadow: -3px 5px 12px 0 rgba(0,0,0,0.1) ;
+  box-shadow: -3px 5px 12px 0 rgba(0,0,0,0.1) ;
+  -webkit-transform: rotateZ(-4deg)   ;
+  transform: rotateZ(-4deg)   ;
+}
+
+.stiker::after {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  content: "";
+  top: 9px;
+  right: 0;
+  left: 122px;
+  border: none;
+  -webkit-border-radius: 30px;
+  border-radius: 30px;
+  font: normal medium/normal Arial, Helvetica, sans-serif;
+  color: rgba(0,0,0,0.9);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: -webkit-radial-gradient(circle closest-side, rgba(25,119,196,1) 0, rgba(25,119,196,1) 4%, rgba(12,113,201,1) 77%, rgba(255,255,255,0) 89%, rgba(255,255,255,0) 100%), -webkit-radial-gradient(circle closest-side, rgba(0,0,0,0.4) 0, rgba(0,0,0,0.2) 81%, rgba(255,255,255,0) 92%, rgba(255,255,255,0) 100%), -webkit-radial-gradient(closest-side, rgba(64,150,238,1) 0, rgba(64,150,238,1) 100%), rgba(255,255,255,0.9);
+  background: -moz-radial-gradient(circle closest-side, rgba(25,119,196,1) 0, rgba(25,119,196,1) 4%, rgba(12,113,201,1) 77%, rgba(255,255,255,0) 89%, rgba(255,255,255,0) 100%), -moz-radial-gradient(circle closest-side, rgba(0,0,0,0.4) 0, rgba(0,0,0,0.2) 81%, rgba(255,255,255,0) 92%, rgba(255,255,255,0) 100%), -moz-radial-gradient(closest-side, rgba(64,150,238,1) 0, rgba(64,150,238,1) 100%), rgba(255,255,255,0.9);
+  background: radial-gradient(circle closest-side, rgba(25,119,196,1) 0, rgba(25,119,196,1) 4%, rgba(12,113,201,1) 77%, rgba(255,255,255,0) 89%, rgba(255,255,255,0) 100%), radial-gradient(circle closest-side, rgba(0,0,0,0.4) 0, rgba(0,0,0,0.2) 81%, rgba(255,255,255,0) 92%, rgba(255,255,255,0) 100%), radial-gradient(closest-side, rgba(64,150,238,1) 0, rgba(64,150,238,1) 100%), rgba(255,255,255,0.9);
+  background-repeat: no-repeat;
+  background-position: 96% -4%, 71% 43%, 50% 50%;
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: 20px 20px, 20px 20px, auto auto;
+  background-size: 20px 20px, 20px 20px, auto auto;
+  -webkit-box-shadow: -4px 8px 5px 1px rgba(0,0,0,0.2) ;
+  box-shadow: -4px 8px 5px 1px rgba(0,0,0,0.2) ;
+  text-shadow: none;
+}
+
+.footerimg {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  width: 1600px;
+  height: 200px;
+  border: none;
+  font: normal 100%/normal Arial, Helvetica, sans-serif;
+  color: rgb(255, 255, 255);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: -webkit-radial-gradient(100% 150%, circle, rgb(165,207,249) 24%, #FFFFFF 25%, #FFFFFF 28%, rgb(165,207,249) 29%, rgb(165,207,249) 36%, #FFFFFF 36%, #FFFFFF 40%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 100%), -webkit-radial-gradient(0 150%, circle, rgb(165,207,249) 24%, #FFFFFF 25%, #FFFFFF 28%, rgb(165,207,249) 29%, rgb(165,207,249) 36%, #FFFFFF 36%, #FFFFFF 40%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 100%), -webkit-radial-gradient(50% 100%, circle, #FFFFFF 10%, rgb(165,207,249) 11%, rgb(165,207,249) 23%, #FFFFFF 24%, #FFFFFF 30%, rgb(165,207,249) 31%, rgb(165,207,249) 43%, #FFFFFF 44%, #FFFFFF 50%, rgb(165,207,249) 51%, rgb(165,207,249) 63%, #FFFFFF 64%, #FFFFFF 71%, rgba(0,0,0,0) 71%, rgba(0,0,0,0) 100%), -webkit-radial-gradient(100% 50%, circle, #FFFFFF 5%, rgb(165,207,249) 6%, rgb(165,207,249) 15%, #FFFFFF 16%, #FFFFFF 20%, rgb(165,207,249) 21%, rgb(165,207,249) 30%, #FFFFFF 31%, #FFFFFF 35%, rgb(165,207,249) 36%, rgb(165,207,249) 45%, #FFFFFF 46%, #FFFFFF 49%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%), -webkit-radial-gradient(0 50%, circle, #FFFFFF 5%, rgb(165,207,249) 6%, rgb(165,207,249) 15%, #FFFFFF 16%, #FFFFFF 20%, rgb(165,207,249) 21%, rgb(165,207,249) 30%, #FFFFFF 31%, #FFFFFF 35%, rgb(165,207,249) 36%, rgb(165,207,249) 45%, #FFFFFF 46%, #FFFFFF 49%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%), rgb(165, 207, 249);
+  background: -moz-radial-gradient(100% 150%, circle, rgb(165,207,249) 24%, #FFFFFF 25%, #FFFFFF 28%, rgb(165,207,249) 29%, rgb(165,207,249) 36%, #FFFFFF 36%, #FFFFFF 40%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 100%), -moz-radial-gradient(0 150%, circle, rgb(165,207,249) 24%, #FFFFFF 25%, #FFFFFF 28%, rgb(165,207,249) 29%, rgb(165,207,249) 36%, #FFFFFF 36%, #FFFFFF 40%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 100%), -moz-radial-gradient(50% 100%, circle, #FFFFFF 10%, rgb(165,207,249) 11%, rgb(165,207,249) 23%, #FFFFFF 24%, #FFFFFF 30%, rgb(165,207,249) 31%, rgb(165,207,249) 43%, #FFFFFF 44%, #FFFFFF 50%, rgb(165,207,249) 51%, rgb(165,207,249) 63%, #FFFFFF 64%, #FFFFFF 71%, rgba(0,0,0,0) 71%, rgba(0,0,0,0) 100%), -moz-radial-gradient(100% 50%, circle, #FFFFFF 5%, rgb(165,207,249) 6%, rgb(165,207,249) 15%, #FFFFFF 16%, #FFFFFF 20%, rgb(165,207,249) 21%, rgb(165,207,249) 30%, #FFFFFF 31%, #FFFFFF 35%, rgb(165,207,249) 36%, rgb(165,207,249) 45%, #FFFFFF 46%, #FFFFFF 49%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%), -moz-radial-gradient(0 50%, circle, #FFFFFF 5%, rgb(165,207,249) 6%, rgb(165,207,249) 15%, #FFFFFF 16%, #FFFFFF 20%, rgb(165,207,249) 21%, rgb(165,207,249) 30%, #FFFFFF 31%, #FFFFFF 35%, rgb(165,207,249) 36%, rgb(165,207,249) 45%, #FFFFFF 46%, #FFFFFF 49%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%), rgb(165, 207, 249);
+  background: radial-gradient(circle at 100% 150%, rgb(165,207,249) 24%, #FFFFFF 25%, #FFFFFF 28%, rgb(165,207,249) 29%, rgb(165,207,249) 36%, #FFFFFF 36%, #FFFFFF 40%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 100%), radial-gradient(circle at 0 150%, rgb(165,207,249) 24%, #FFFFFF 25%, #FFFFFF 28%, rgb(165,207,249) 29%, rgb(165,207,249) 36%, #FFFFFF 36%, #FFFFFF 40%, rgba(0,0,0,0) 40%, rgba(0,0,0,0) 100%), radial-gradient(circle at 50% 100%, #FFFFFF 10%, rgb(165,207,249) 11%, rgb(165,207,249) 23%, #FFFFFF 24%, #FFFFFF 30%, rgb(165,207,249) 31%, rgb(165,207,249) 43%, #FFFFFF 44%, #FFFFFF 50%, rgb(165,207,249) 51%, rgb(165,207,249) 63%, #FFFFFF 64%, #FFFFFF 71%, rgba(0,0,0,0) 71%, rgba(0,0,0,0) 100%), radial-gradient(circle at 100% 50%, #FFFFFF 5%, rgb(165,207,249) 6%, rgb(165,207,249) 15%, #FFFFFF 16%, #FFFFFF 20%, rgb(165,207,249) 21%, rgb(165,207,249) 30%, #FFFFFF 31%, #FFFFFF 35%, rgb(165,207,249) 36%, rgb(165,207,249) 45%, #FFFFFF 46%, #FFFFFF 49%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%), radial-gradient(circle at 0 50%, #FFFFFF 5%, rgb(165,207,249) 6%, rgb(165,207,249) 15%, #FFFFFF 16%, #FFFFFF 20%, rgb(165,207,249) 21%, rgb(165,207,249) 30%, #FFFFFF 31%, #FFFFFF 35%, rgb(165,207,249) 36%, rgb(165,207,249) 45%, #FFFFFF 46%, #FFFFFF 49%, rgba(0,0,0,0) 50%, rgba(0,0,0,0) 100%), rgb(165, 207, 249);
+  -webkit-background-origin: padding-box;
+  background-origin: padding-box;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-background-size: 100px 50px;
+  background-size: 100px 50px;
+}
+
+.bubble 
+{
+position: relative;
+width: 80%;
+height: 25%;
+padding: 0px;
+background: #D6D4FF;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+}
+
+.bubble:after 
+{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 18px 15px 18px 0;
+border-color: transparent #D6D4FF;
+display: block;
+width: 0;
+z-index: 1;
+left: -15px;
+top: 42px;
+}
+.bubble p {
+  width:100%;
+  height:100%;
+  padding:5% 5% 5%;
+  margin:0 auto;
+  text-align:center;
+  font-size:130%;
+  font:normal 130%/1.5 "Comic Sans MS", cursive, sans-serif;
+}
+.oval-speech-border {
+  position:relative;
+  padding:70px 30px;
+  margin:1em auto 60px;
+  border:10px solid #f3961c;
+  text-align:center;
+  color:#333;
+  background:#fff;
+  /* css3 */
+  /*
+  NOTES:
+  -webkit-border-radius:240px 140px; // produces oval in safari 4 and chrome 4
+  -webkit-border-radius:240px / 140px; // produces oval in chrome 4 (again!) but not supported in safari 4
+  Not correct application of the current spec, therefore, using longhand to avoid future problems with webkit corrects this
+  */
+  -webkit-border-top-left-radius:240px 140px;
+  -webkit-border-top-right-radius:240px 140px;
+  -webkit-border-bottom-right-radius:240px 140px;
+  -webkit-border-bottom-left-radius:240px 140px;
+  -moz-border-radius:240px / 140px;
+  border-radius:240px / 140px;
+}
+
+/* creates larger curve */
+.oval-speech-border:before {
+  content:"";
+  position:absolute;
+  z-index:2;
+  bottom:-40px;
+  right:50%;
+  width:50px;
+  height:30px;
+  border-style:solid;
+  border-width:0 10px 10px 0;
+  border-color:#f3961c;
+  margin-right:-10px;
+  background:transparent;
+  /* css3 */
+  -webkit-border-bottom-right-radius:80px 50px;
+  -moz-border-radius-bottomright:80px 50px;
+  border-bottom-right-radius:80px 50px;
+  /* reduce the damage in FF3.0 */
+  display:block;
+}
+
+/* creates smaller curve */
+.oval-speech-border:after {
+  content:"";
+  position:absolute;
+  z-index:2;
+  bottom:-40px;
+  right:50%;
+  width:20px;
+  height:31px;
+  border-style:solid;
+  border-width:0 10px 10px 0;
+  border-color:#f3961c;
+  margin-right:20px;
+  background:transparent;
+  /* css3 */
+  -webkit-border-bottom-right-radius:40px 50px;
+  -moz-border-radius-bottomright:40px 50px;
+  border-bottom-right-radius:40px 50px;
+  /* reduce the damage in FF3.0 */
+  display:block;
+}
+
+/* creates a small circle to produce a rounded point where the two curves meet */
+.oval-speech-border > :first-child:before {
+  content:"";
+  position:absolute;
+  z-index:1;
+  bottom:-40px;
+  right:50%;
+  width:10px;
+  height:10px;
+  margin-right:45px;
+  background:#f3961c;
+  /* css3 */
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;
+}
+
+/* creates a white rectangle to cover part of the oval border*/
+.oval-speech-border > :first-child:after {
+  content:"";
+  position:absolute;
+  z-index:1;
+  bottom:-10px;
+  right:50%;
+  width:30px;
+  height:15px;
+  background:#fff;
+}
+.oval-quotes {
+  position:relative;
+  width:400px;
+  height:350px;
+  margin:2em auto 10px;
+  color:#000;
+  background:#ffed26;
+  /* css3 */
+  /*
+  NOTES:
+  -webkit-border-radius:Apx Bpx; // produces oval in safari 4 and chrome 4
+  -webkit-border-radius:Apx / Bpx; // produces oval in chrome 4 (again!) but not supported in safari 4
+  Not correct application of the current spec, therefore, using longhand to avoid future problems with webkit corrects this
+  */
+  -webkit-border-top-left-radius:400px 350px;
+  -webkit-border-top-right-radius:400px 350px;
+  -webkit-border-bottom-right-radius:400px 350px;
+  -webkit-border-bottom-left-radius:400px 350px;
+  -moz-border-radius:400px / 350px;
+  border-radius:400px / 350px;
+}
+/* creates opening quotation mark */
+.oval-quotes:before {
+  content:"\201C";
+  position:absolute;
+  z-index:1;
+  top:20px;
+  left:20px;
+  font:80px/1 Georgia, serif;
+  color:#ffed26;
+}
+
+/* creates closing quotation mark */
+.oval-quotes:after {
+  content:"\201D";
+  position:absolute;
+  z-index:1;
+  bottom:0;
+  right:20px;
+  font:80px/0.25 Georgia, serif;
+  color:#ffed26;
+}
+
+.oval-quotes p {
+  width:250px;
+  height:250px;
+  padding:50px 0 0;
+  margin:0 auto;
+  text-align:center;
+  font-size:25px;
+}
+
+/* creates smaller curve */
+.oval-quotes p:before {
+  content:"";
+  position:absolute;
+  z-index:-1;
+  bottom:-30px;
+  right:55%;
+  width:180px; /* wider than necessary to make it look a bit better in IE8 */
+  height:60px;
+  background:#fff; /* need this for webkit - bug in handling of border-radius */
+  /* css3 */
+  -webkit-border-bottom-right-radius:40px 50px;
+  -moz-border-radius-bottomright:40px 50px;
+  border-bottom-right-radius:40px 50px;
+  /* using translate to avoid undesired appearance in CSS2.1-capabable but CSS3-incapable browsers */
+  -webkit-transform:translate(-30px, -2px);
+  -moz-transform:translate(-30px, -2px);
+  -ms-transform:translate(-30px, -2px);
+  -o-transform:translate(-30px, -2px);
+  transform:translate(-30px, -2px);
+}
+
+/* creates larger curve */
+.oval-quotes p:after {
+  content:"";
+  position:absolute;
+  z-index:-2;
+  bottom:-30px;
+  right:25%;
+  height:80px;
+  border-right:200px solid #ffed26;
+  background:#ffed26; /* need this for webkit - bug in handling of border-radius */
+  /* css3 */
+  -webkit-border-bottom-right-radius:200px 100px;
+  -moz-border-radius-bottomright:200px 100px;
+  border-bottom-right-radius:200px 100px;
+  /* using translate to avoid undesired appearance in CSS2.1-capabable but CSS3-incapable browsers */
+  -webkit-transform:translate(0, -2px);
+  -moz-transform:translate(0, -2px);
+  -ms-transform:translate(0, -2px);
+  -o-transform:translate(0, -2px);
+  transform:translate(0, -2px);
+  /* reduce the damage in FF3.0 */
+  display:block;
+  width:0;
+}
+
+.oval-quotes + p {
+  position:relative; /* part of the IE8 width compromise */
+  width:150px;
+  margin:0 0 2em;
+  font-size:18px;
+  font-weight:bold;
+}
