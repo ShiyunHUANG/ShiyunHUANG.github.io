@@ -71,7 +71,11 @@
   h3{
     font-size: 18px;
   }
-
+  .date {
+        float: right;
+        font-style: italic;
+        font-size: 12px;
+    }
   .overflow{
     overflow: hidden;
   }
