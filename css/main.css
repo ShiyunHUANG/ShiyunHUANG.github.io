@@ -26,12 +26,14 @@
 
 
   a{
-    color:#C03035;
+    /*color:#C03035;*/
+    color: #0099AE;
+    font-weight: 300;
   }
 
   a:hover {
     outline: none;
-    text-decoration:none;
+    text-decoration:underline;
     color:#4fcccd;
   }
 
