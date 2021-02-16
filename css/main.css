@@ -76,10 +76,10 @@
    Collapsible START 
   */
 .collapsible {
-  background-color: #777;
-  color: white;
+  background-color: rgb(216, 215, 252);
+  color: rgb(134, 102, 204);
   cursor: pointer;
-  padding: 18px;
+  padding: 12px;
   width: 100%;
   border: none;
   text-align: left;
@@ -87,19 +87,20 @@
   font-size: 15px;
 }
 
-  /*
-   Collapsible END 
-  */
 .active, .collapsible:hover {
-  background-color: #555;
+  background-color: rgb(155, 135, 196);
+  color: white;
 }
 
 .content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
-  background-color: #f1f1f1;
+  background-color: rgb(233, 228, 245);
 }
+  /*
+   Collapsible END 
+  */
 
 
   .date {
