@@ -15,17 +15,24 @@
             <p>有时随便扒谱，翻弹一些喜欢的曲子，把谱子发这存个档。一般是给自己看的简洁版谱子，没有节拍的，如果有空可能考虑打个谱吧。
             </p>
 
-            <p>1. 《三国演义》片尾曲《历史的天空》
-            </p>
-
-            <img src="images/music_sheet/sanguo_ed/sanguo_ed1.jpg" width="90%">
-            <img src="images/music_sheet/sanguo_ed/sanguo_ed2.jpg" width="90%">
-            <p>B站录像链接：<a href=https://www.bilibili.com/video/BV1YV411B7wi> https://www.bilibili.com/video/BV1YV411B7wi </p>
+            <p>1. 《三国演义》片尾曲《历史的天空》</p>
+            <button type="button" class="collapsible"> 打开谱子 《历史的天空》 </button>
+            <div class="content">
+                <img src="images/music_sheet/sanguo_ed/sanguo_ed1.jpg" width="90%">
+                <img src="images/music_sheet/sanguo_ed/sanguo_ed2.jpg" width="90%">
+                <p>B站录像链接：<a href=https://www.bilibili.com/video/BV1YV411B7wi> https://www.bilibili.com/video/BV1YV411B7wi </a></p>
+            </div>
 
             <p>2. 《JOJO的奇妙冒险》片尾曲 Roundabout - Yes</p>
-            <button type="button" class="collapsible">打开 Roundabout - Yes</button>
+            <button type="button" class="collapsible"> 打开谱子 Roundabout - Yes</button>
             <div class="content">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <img src="images/music_sheet/roundabout/roundabout_draft0.jpg" width="90%">
+                <img src="images/music_sheet/roundabout/roundabout_draft1.jpg" width="90%">
+                <img src="images/music_sheet/roundabout/roundabout_draft2.jpg" width="90%">
+                <img src="images/music_sheet/roundabout/roundabout_draft3.jpg" width="90%">
+                <img src="images/music_sheet/roundabout/roundabout_draft4.jpg" width="90%">
+                <img src="images/music_sheet/roundabout/roundabout_draft5.jpg" width="90%">
+                <p>B站录像链接：<a href=https://www.bilibili.com/video/BV1HU4y1W7vv> https://www.bilibili.com/video/BV1HU4y1W7vv </a></p>
             </div>
 
         </div>
@@ -36,7 +43,23 @@
     <script>
         $("#header").load("header.html");
         $("#myFooter").load("footer.html");
+        /* collapsible */
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
     </script>
 
 </body>
+
 </html>
